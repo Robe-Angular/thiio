@@ -1,6 +1,6 @@
-Step 1. Create a database on mysql with the name tutorial_db;
-Step 2. Grant permissions to tutorial_user to the mysql Database;
-Step 3. Run:
+<p>Step 1. Create a database on mysql with the name tutorial_db</p>
+<p>Step 2. Grant permissions to tutorial_user to the mysql Database</p>
+<p>Step 3. Run:</p>
     cp .env.example .env
     php artisan key:generate
 Step 4. Properly install and enable pdo_mysql

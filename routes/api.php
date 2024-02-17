@@ -19,4 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::get('/make-admin','App\Http\Controllers\AdminController@index');
+Route::get('/make-admin','App\Http\Controllers\AdminController@index');
+Route::controller(App\Http\Controllers\AuthController::class)->group(function(){
+    Route::post('login','login');
+    Route::post('register','register');
+    Route::post('logout','logout');
+    Route::post('refresh','refresh');
+
+});

@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/make-admin','App\Http\Controllers\AdminController@index');
-Route::controller(App\Http\Controllers\AuthController::class)->group(function(){
+Route::get('/make-admin',[AdminController::class,'index']);
+Route::controller(AuthController::class)->group(function(){
     Route::post('login','login');
     Route::post('register','register');
     Route::post('logout','logout');

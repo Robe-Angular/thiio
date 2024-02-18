@@ -12,9 +12,9 @@
   
 
 ```linux
-cp .env.example .env
+	cp .env.example .env
 
-php artisan key:generate
+	php artisan key:generate
 ```
 
   
@@ -28,7 +28,7 @@ php artisan key:generate
   
 
 ```linux
-php artisan jwt:secret
+	php artisan jwt:secret
 ```
 
   
@@ -38,12 +38,12 @@ php artisan jwt:secret
   
 
 ```linux
-DB_CONNECTION=mysql
-DB_HOST=host_to_database
-DB_PORT=3306
-DB_DATABASE=tutorial_db
-DB_USERNAME=tutorial_user
-DB_PASSWORD=secret_tutorial
+	DB_CONNECTION=mysql
+	DB_HOST=host_to_database
+	DB_PORT=3306
+	DB_DATABASE=tutorial_db
+	DB_USERNAME=tutorial_user
+	DB_PASSWORD=secret_tutorial
 ```
 
   
@@ -53,7 +53,7 @@ DB_PASSWORD=secret_tutorial
   
 
 ```linux
-php artisan migrate:install
+	php artisan migrate:install
 ```
 
   
@@ -62,31 +62,28 @@ php artisan migrate:install
   
 
 ```linux
-php artisan migrate
+	php artisan migrate
 ```
 <p>Step 9. Uncomment lines on <i>app/Http/Controllers/AdminController.php</i></p>
 
 ```php
-public function index(){
+	public function index(){
+        
+        
+        $admin = Admin::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.admin',
+            'password' => Hash::make('LaravelJWT')//'LaravelJWT' Is the password
+        ]);
 
-	$admin = Admin::create([
-
-		'name' => 'admin',
-
-		'email' => 'admin@admin.admin',
-
-		'password' => '$2a$12$1AWqcePAFBbsQ/WD2wkUw.LUaYZHED7rdrSZyMNVzqtNVumCcLnbe'//'LaravelJWT' Is the password
-
-	]);
-
-	return response()->json(['message' => 'success'], 200);
-}
+        return response()->json(['message' => 'success'], 200);
+	}
 ```
 
 and on <i>routes/api.php uncomment</i> uncomment:
 
 ```php
-Route::get('/make-admin','App\Http\Controllers\AdminController@index');
+	Route::get('/make-admin',[AdminController::class,'index']);
 ```
 To allow register the admin.
 
